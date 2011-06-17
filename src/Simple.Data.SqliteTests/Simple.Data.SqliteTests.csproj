@@ -71,6 +71,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="QueryPagerTests.cs" />
     <Compile Include="RealityTests.cs" />
     <Compile Include="SchemaTests\DatabaseSchemaTests.cs" />
   </ItemGroup>

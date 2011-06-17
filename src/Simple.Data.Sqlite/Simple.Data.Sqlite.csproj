@@ -57,6 +57,7 @@
     <Compile Include="SqliteConnectionProvider.cs" />
     <Compile Include="SqliteConnectionStringConnectionProvider.cs" />
     <Compile Include="SqliteInMemoryDbConnection.cs" />
+    <Compile Include="SqliteQueryPager.cs" />
     <Compile Include="SqliteSchemaProvider.cs" />
     <Compile Include="SqliteTypeResolver.cs" />
   </ItemGroup>
