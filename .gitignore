@@ -8,4 +8,6 @@ _ReSharper.*
 *.cache
 *~
 *.swp
+bin
+obj
 /Build
