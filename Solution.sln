@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.Data.Sqlite", "src\Simple.Data.Sqlite\Simple.Data.Sqlite.csproj", "{81522EFB-0420-4683-B209-BD19FB174D25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.Data.SqliteTests", "src\Simple.Data.SqliteTests\Simple.Data.SqliteTests.csproj", "{99EB206D-952C-4D9F-A11D-BA92CE352C27}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81522EFB-0420-4683-B209-BD19FB174D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81522EFB-0420-4683-B209-BD19FB174D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81522EFB-0420-4683-B209-BD19FB174D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81522EFB-0420-4683-B209-BD19FB174D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99EB206D-952C-4D9F-A11D-BA92CE352C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99EB206D-952C-4D9F-A11D-BA92CE352C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99EB206D-952C-4D9F-A11D-BA92CE352C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99EB206D-952C-4D9F-A11D-BA92CE352C27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

@@ -1,0 +1,11 @@
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\bin\Debug\Simple.Data.SqliteTests.dll
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\bin\Debug\Simple.Data.SqliteTests.pdb
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\bin\Debug\nunit.framework.dll
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\bin\Debug\Simple.Data.Ado.dll
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\bin\Debug\Simple.Data.dll
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\bin\Debug\Simple.Data.Mocking.dll
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\bin\Debug\System.Data.SQLite.DLL
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\bin\Debug\nunit.framework.xml
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\obj\Debug\ResolveAssemblyReference.cache
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\obj\Debug\Simple.Data.SqliteTests.dll
+D:\Dev\Personal\Simple.Data.Sqlite\src\Simple.Data.SqliteTests\obj\Debug\Simple.Data.SqliteTests.pdb
