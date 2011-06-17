@@ -4,6 +4,7 @@ using Simple.Data.Ado;
 
 namespace Simple.Data.Sqlite
 {
+    [Export(typeof(IConnectionProvider))]
     [Export("sql", typeof(IConnectionProvider))]
     public class SqliteConnectionStringConnectionProvider : SqliteConnectionProvider
     {
