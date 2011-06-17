@@ -10,4 +10,4 @@ _ReSharper.*
 *.swp
 bin
 obj
-/Build
+ci

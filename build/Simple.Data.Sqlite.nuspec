@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Simple.Data.Sqlite</id>
+    <version>0.6.7</version>
+    <authors>Mark Rendle, Bobby Johnson</authors>
+    <owners>Mark Rendle, Bobby Johnson</owners>
+    <description>SQLite 3 ADO provider for the Simple.Data data access library.</description> 
+    <projectUrl>https://github.com/NotMyself/Simple.Data</projectUrl>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <tags>sqlite database data ado .net40</tags>
+    <language>en-us</language>
+    <dependencies>
+      <dependency id="Simple.Data.Ado" version="0.6.7" />
+      <dependency id="System.Data.SQLite" version="1.0.66.1" />
+    </dependencies>
+  </metadata>
+</package>
