@@ -17,7 +17,7 @@ namespace Simple.Data.SqliteTests
         {
             var createTableSql = Properties.Resources.CreateEmployeesTable;
             db = Database.OpenConnection(connectionString);
-            connection = new ProviderHelper().GetProviderByConnectionString(connectionString).CreateConnection();
+            connection = ((AdoAdapter) db.GetAdapter()).ConnectionProvider.CreateConnection();
             connection.Open();
             var command = connection.CreateCommand();
             command.CommandText = createTableSql;
