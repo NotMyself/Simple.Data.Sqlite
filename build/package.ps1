@@ -9,4 +9,13 @@ task package -depends test {
 	Pop-Location
 }
 
+task publish {
+	Push-Location "$nuget_pub_dir"
+	#& $nuget push
+	ls *$version.nupkg | ForEach-Object { 
+			& $nuget push $_ 
+		}
+	Pop-Location
+}
+
 
