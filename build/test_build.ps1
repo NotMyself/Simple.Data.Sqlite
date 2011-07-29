@@ -1,4 +1,5 @@
 properties {
+	$test_dir = "$source_dir\\Simple.Data.SqliteTests\bin\Release"
 	$tests = @('Simple.Data.SqliteTests.dll') 
 	$nunit = "$tool_dir\NUnit.2.5.10.11092\Tools\nunit-console-x86.exe"
 }
@@ -10,7 +11,7 @@ task test -depends compile {
      return 
   }
 
-  $test_assemblies = $tests | ForEach-Object { "$build_output_dir\$_" }
+  $test_assemblies = $tests | ForEach-Object { "$test_dir\$_" }
 
   & $nunit $test_assemblies /noshadow
 

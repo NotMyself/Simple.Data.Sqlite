@@ -1,6 +1,7 @@
 /src/*/*/obj
 /src/*/*/bin
 _ReSharper.*
+TestResult.xml
 *.csproj.user
 *.resharper.user
 *.resharper

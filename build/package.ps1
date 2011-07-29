@@ -1,13 +1,12 @@
 properties {
-	$nuget_pack_dir = "$build_dir\nuget_pub\"
+	$nuget_pub_dir = "$base_dir\releases\"
 	$nuget = "$tool_dir\nuget\NuGet.exe"
 }
 
 task package -depends test {
-	New-Item $nuget_pack_dir\lib\net40 -itemType directory | Out-Null
-	Copy-Item "$build_output_dir\Simple.Data.Sqlite.dll" $nuget_pack_dir\lib\net40
-	Copy-Item "$base_dir\build\Simple.Data.Sqlite.nuspec" $nuget_pack_dir
-	& $nuget pack "$base_dir\build\Simple.Data.Sqlite.nuspec" #/o "$build_dir\nuget"
+	Push-Location "$source_dir\Simple.Data.Sqlite"
+	& $nuget pack .\Simple.Data.Sqlite.csproj -Properties Configuration=Release -Version $version -OutputDirectory $nuget_pub_dir
+	Pop-Location
 }
 
 
