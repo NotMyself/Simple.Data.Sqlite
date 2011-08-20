@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="FindTests.cs" />
     <Compile Include="InMemoryUsageTests.cs" />
+    <Compile Include="InsertTests.cs" />
     <Compile Include="NorthwindTests.cs" />
     <Compile Include="OrderDetailTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,7 +16,7 @@ namespace Simple.Data.SqliteTests
             "Northwind.db");
 
         [TestFixtureSetUp]
-        public void DeleteAlice()
+        public void DeleteDirk()
         {
             var db = Database.Opener.OpenFile(DatabasePath);
             db.Employees.DeleteByFirstName("Dirk");

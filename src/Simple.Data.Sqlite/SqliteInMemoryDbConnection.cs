@@ -20,7 +20,7 @@ namespace Simple.Data.Sqlite
             //do not close explicitly
         }
 
-        public DataTable GetSchema(string collectionName, params string[] constraints)
+        public override DataTable GetSchema(string collectionName, params string[] constraints)
         {
             return DelegatedConnection.GetSchema(collectionName, constraints);
         }
