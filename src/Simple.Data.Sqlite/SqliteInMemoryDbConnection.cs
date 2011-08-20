@@ -3,7 +3,7 @@ using Simple.Data.Ado;
 
 namespace Simple.Data.Sqlite
 {
-    public class SqliteInMemoryDbConnection : DelegatingConnectionBase
+    public class SqliteInMemoryDbConnection : DelegatingConnectionBase, IInMemoryDbConnection
     {
         public SqliteInMemoryDbConnection(IDbConnection target)
             : base(target)
@@ -30,7 +30,7 @@ namespace Simple.Data.Sqlite
             //do not dispose anything...
         }
 
-        public void KillDashNine()
+        public void Destroy()
         {
             if (DelegatedConnection.State != ConnectionState.Closed)
                 DelegatedConnection.Close();

@@ -1,6 +1,4 @@
-using System.Data;
 using NUnit.Framework;
-using Simple.Data.Ado;
 using Simple.Data.Sqlite;
 
 namespace Simple.Data.SqliteTests
@@ -9,27 +7,32 @@ namespace Simple.Data.SqliteTests
     public class InMemoryUsageTests
     {
         const string connectionString = "Data Source=:memory:";
-        IDbConnection connection;
+        IInMemoryDbConnection connection;
         dynamic db;
 
         [SetUp]
         public void SetUp()
         {
-            var createTableSql = Properties.Resources.CreateEmployeesTable;
+            connection = Database.Opener.OpenMemoryConnection(connectionString);
             db = Database.OpenConnection(connectionString);
-            connection = ((AdoAdapter) db.GetAdapter()).ConnectionProvider.CreateConnection();
-            connection.Open();
-            var command = connection.CreateCommand();
-            command.CommandText = createTableSql;
-            command.ExecuteNonQuery();
+            PrepareDatabase();
             
         }
 
         [TearDown]
         public void TearDown()
         {
-            ((SqliteInMemoryDbConnection) connection).KillDashNine();
-            connection = null;
+            connection.Destroy();
+        }
+
+        private void PrepareDatabase()
+        {
+            var createTableSql = Properties.Resources.CreateEmployeesTable;
+            connection.Open();
+            var command = connection.CreateCommand();
+            command.CommandText = createTableSql;
+            command.ExecuteNonQuery();
+
         }
 
         [Test]
