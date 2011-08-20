@@ -1,21 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using NUnit.Framework;
 
 namespace Simple.Data.SqliteTests
 {
-    //TODO: add a table to the northwind db to make these tests pass.
     [TestFixture]
-    [Ignore]
     public class QueryTests
     {
         private static readonly string DatabasePath = Path.Combine(
            Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase.Substring(8)),
            "Northwind.db");
+
+        [TestFixtureSetUp]
+        public void InsertRecords()
+        {
+            var db = Database.Opener.OpenFile(DatabasePath);
+            
+            foreach (var number in Enumerable.Range(2,100))
+            {
+                var item = db.PagingTest.Insert(row: number);
+                Console.WriteLine(item.Id);
+            }
+        }
+
 
         [Test]
         public void ShouldSelectFromOneToTen()
