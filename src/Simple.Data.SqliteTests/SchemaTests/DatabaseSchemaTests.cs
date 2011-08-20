@@ -41,14 +41,13 @@ namespace Simple.Data.SqliteTests
         }
 
         [Test]
-        [Ignore]
         public void TestForeignKey()
         {
             var foreignKey = Schema.FindTable("Orders").ForeignKeys.Single();
-            Assert.AreEqual("Customers", foreignKey.MasterTable);
-            Assert.AreEqual("Orders", foreignKey.DetailTable);
-            Assert.AreEqual("CustomerId", foreignKey.Columns[0]);
-            Assert.AreEqual("CustomerId", foreignKey.UniqueColumns[0]);
+            Assert.AreEqual("Customers", foreignKey.MasterTable.Name);
+            Assert.AreEqual("Orders", foreignKey.DetailTable.Name);
+            Assert.AreEqual("CustomerID", foreignKey.Columns[0]);
+            Assert.AreEqual("CustomerID", foreignKey.UniqueColumns[0]);
         }
 
         [Test]
