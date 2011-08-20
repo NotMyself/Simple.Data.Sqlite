@@ -21,7 +21,6 @@ namespace Simple.Data.SqliteTests
             foreach (var number in Enumerable.Range(2,100))
             {
                 var item = db.PagingTest.Insert(row: number);
-                Console.WriteLine(item.Id);
             }
         }
 
