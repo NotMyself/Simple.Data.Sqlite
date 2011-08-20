@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 
@@ -29,6 +31,18 @@ namespace Simple.Data.SqliteTests
             var products = db.Products.FindAll(db.Products.CategoryId == 4);
             var product = products.First();
             Assert.Pass();
+        }
+
+        [Test]
+        public void DistinctShouldReturnDistinctList()
+        {
+            var db = Database.OpenFile(DatabasePath);
+            List<string> countries = db.Customers.All()
+                .Select(db.Customers.Country)
+                .Distinct()
+                .ToScalarList<string>();
+
+            Assert.AreEqual(countries.Distinct().Count(), countries.Count);
         }
 
         [Test]
@@ -90,8 +104,10 @@ namespace Simple.Data.SqliteTests
         public void CanAggregateATable()
         {
             var db = Database.OpenFile(DatabasePath);
-            long data = db.Orders.All().Count();
-            Assert.That(data,Is.GreaterThan(0));
+            var data = db.Orders.All();
+            
+            var count = data.Count();
+            Assert.That(count,Is.GreaterThan(0));
         }
 
         [Test]
