@@ -78,7 +78,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="QueryPagerTests.cs" />
+    <Compile Include="QueryTests.cs" />
     <Compile Include="RealityTests.cs" />
+    <Compile Include="SchemaProviderTests.cs" />
     <Compile Include="SchemaTests\DatabaseSchemaTests.cs" />
   </ItemGroup>
   <ItemGroup>
