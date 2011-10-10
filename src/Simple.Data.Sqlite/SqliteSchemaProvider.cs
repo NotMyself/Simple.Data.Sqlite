@@ -46,8 +46,9 @@ namespace Simple.Data.Sqlite
 
         public IEnumerable<Column> GetColumns(Table table)
         {
-            return GetColumnsDataTable(table).AsEnumerable().Select(
-                row => new Column(row.Field<string>("name"), table, Convert.ToBoolean(row.Field<long>("pk"))));
+            return GetSchema( "COLUMNS", new[] { null, null, table.ActualName } )
+                .AsEnumerable()
+                .Select( row => new Column( row.Field<string>( "COLUMN_NAME" ), table, row.Field<bool>( "AUTOINCREMENT" ) ) );
         }
 
         public IEnumerable<Procedure> GetStoredProcedures()
@@ -62,11 +63,21 @@ namespace Simple.Data.Sqlite
 
         public Key GetPrimaryKey(Table table)
         {
-            return new Key(GetColumns(table).Where(column => column.IsIdentity).Select(x => x.ActualName));
+            return new Key( GetSchema( "COLUMNS", new[] { null, null, table.ActualName } )
+                .AsEnumerable()
+                .Where( row => row.Field<bool>( "PRIMARY_KEY" ) )
+                .Select( row => row.Field<string>( "COLUMN_NAME" ) ) );
+            //return new Key(GetColumns(table).Where(column => column.IsIdentity).Select(x => x.ActualName));
         }
 
         public IEnumerable<ForeignKey> GetForeignKeys(Table table)
         {
+            var fkTest = GetSchema( "FOREIGNKEYS", new[] { null, null, table.ActualName } );
+            foreach( var row in fkTest )
+            {
+                System.Diagnostics.Debug.WriteLine( "" );
+            }
+
             var groups = SelectToDataTable("pragma foreign_key_list(" + table.ActualName + ");")
                 .AsEnumerable()
                 .GroupBy(row => row.Field<string>("table"));
