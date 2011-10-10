@@ -8,6 +8,7 @@ using Simple.Data.Ado.Schema;
 namespace Simple.Data.Sqlite
 {
     [Export("db", typeof(IConnectionProvider))]
+    [Export("sqlite", typeof(IConnectionProvider))]
     public class SqliteConnectionProvider : IConnectionProvider
     {
         string _connectionString;
