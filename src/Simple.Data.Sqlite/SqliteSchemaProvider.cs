@@ -67,27 +67,28 @@ namespace Simple.Data.Sqlite
                 .AsEnumerable()
                 .Where( row => row.Field<bool>( "PRIMARY_KEY" ) )
                 .Select( row => row.Field<string>( "COLUMN_NAME" ) ) );
-            //return new Key(GetColumns(table).Where(column => column.IsIdentity).Select(x => x.ActualName));
         }
 
         public IEnumerable<ForeignKey> GetForeignKeys(Table table)
         {
-            var fkTest = GetSchema( "FOREIGNKEYS", new[] { null, null, table.ActualName } );
-            foreach( var row in fkTest )
-            {
-                System.Diagnostics.Debug.WriteLine( "" );
-            }
-
-            var groups = SelectToDataTable("pragma foreign_key_list(" + table.ActualName + ");")
+            var groups = GetSchema( "FOREIGNKEYS", new[] { null, null, table.ActualName } )
                 .AsEnumerable()
-                .GroupBy(row => row.Field<string>("table"));
+                .GroupBy( row => new
+                {
+                    CatalogName = row.Field<string>( "FKEY_TO_CATALOG" ),
+                    SchemaName = row.Field<string>( "FKEY_TO_SCHEMA" ),
+                    TableName = row.Field<string>( "FKEY_TO_TABLE" )
+                } );
 
             foreach (var group in groups)
             {
-                var masterName = new ObjectName(null, group.First().Field<string>("table"));
+                var masterName = new ObjectName( null, group.Key.TableName );
                 var detailName = new ObjectName(null, table.ActualName);
-                var key = new ForeignKey(detailName, group.Select(row => row.Field<string>("to")), masterName,
-                                         group.Select(row => row.Field<string>("from")));
+                var key = new ForeignKey(
+                    detailName, 
+                    group.Select(row => row.Field<string>("FKEY_TO_COLUMN")), 
+                    masterName,
+                    group.Select(row => row.Field<string>("FKEY_FROM_COLUMN")));
                 yield return key;
             }
         }

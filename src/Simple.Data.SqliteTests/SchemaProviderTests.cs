@@ -70,5 +70,16 @@ namespace Simple.Data.SqliteTests
             Assert.IsNotNull( idColoumn );
             Assert.IsFalse( idColoumn.IsIdentity );
         }
+
+        [Test]
+        public void TestForeignKeys()
+        {
+            var table = schemaProvider.GetTables().FirstOrDefault( t => t.ActualName == "Products" );
+            Assert.IsNotNull( table );
+
+            var foreignKeys = schemaProvider.GetForeignKeys( table );
+            Assert.IsNotNull( foreignKeys );
+            Assert.IsTrue( foreignKeys.Count() == 2 );
+        }
     }
 }
