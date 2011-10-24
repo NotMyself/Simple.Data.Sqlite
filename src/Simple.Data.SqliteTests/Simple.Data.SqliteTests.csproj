@@ -36,14 +36,17 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data">
-      <HintPath>..\..\packages\Simple.Data.Core.0.9.6.2\lib\net40\Simple.Data.dll</HintPath>
+    <Reference Include="Simple.Data, Version=0.9.8.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Simple.Data.Core.0.9.8.2\lib\net40\Simple.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.Ado">
-      <HintPath>..\..\packages\Simple.Data.Ado.0.9.6.2\lib\net40\Simple.Data.Ado.dll</HintPath>
+    <Reference Include="Simple.Data.Ado, Version=0.9.8.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Simple.Data.Ado.0.9.8.2\lib\net40\Simple.Data.Ado.dll</HintPath>
     </Reference>
-    <Reference Include="Simple.Data.Mocking">
-      <HintPath>..\..\packages\Simple.Data.Mocking.0.9.6.2\lib\net40\Simple.Data.Mocking.dll</HintPath>
+    <Reference Include="Simple.Data.Mocking, Version=0.9.8.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Simple.Data.Mocking.0.9.8.2\lib\net40\Simple.Data.Mocking.dll</HintPath>
     </Reference>
     <Reference Include="Simple.Data.TestHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Simple.Data.TestHelper\Simple.Data.TestHelper.dll</HintPath>
