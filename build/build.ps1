@@ -1,5 +1,5 @@
 properties {
-	$version = if($env:BUILD_NUMBER) {$env:BUILD_NUMBER} else { "0.9.8.3" }
+	$version = if($env:BUILD_NUMBER) {$env:BUILD_NUMBER} else { "0.9.8.5" }
 }
 
 include .\master_build.ps1
