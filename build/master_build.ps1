@@ -1,7 +1,7 @@
 properties {
 	$base_dir = resolve-path ..\
-	$source_dir = "$base_dir\src"
-	$tool_dir = "$base_dir\packages"
+	$source_dir = "$base_dir\src\"
+	$tool_dir = "$base_dir\packages\"
 	$sharedAssemblyInfo = "$base_dir\src\ProjectInfo.cs"
 	$sln_file = "$base_dir\Solution.sln"
 	$msbuild = "C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"

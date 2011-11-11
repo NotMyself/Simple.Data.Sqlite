@@ -1,6 +1,6 @@
 properties {
 	$nuget_pub_dir = "$base_dir\releases\"
-	$nuget = "$tool_dir\nuget\NuGet.exe"
+	$nuget = $tool_dir + (GetNugetDir) + "\tools\NuGet.exe"
 }
 
 task package -depends test {
@@ -16,6 +16,10 @@ task publish {
 			& $nuget push $_ 
 		}
 	Pop-Location
+}
+
+function GetNugetDir() {
+ 	return Get-ChildItem -Path $tool_dir | Where-Object {$_.name -like "NuGet*"} 
 }
 
 
