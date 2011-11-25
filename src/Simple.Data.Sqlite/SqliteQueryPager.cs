@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -11,17 +12,16 @@ namespace Simple.Data.Sqlite
     {
         private static readonly Regex ColumnExtract = new Regex(@"SELECT\s*(.*)\s*(FROM.*)", RegexOptions.Multiline | RegexOptions.IgnoreCase);
 
-        public string ApplyPaging(string sql, string skipParameterName, string takeParameterName)
+        public IEnumerable<string> ApplyPaging(string sql, int skip, int take)
         {
-            if(sql.IndexOf("order by", StringComparison.InvariantCultureIgnoreCase) < 0)
+            if (sql.IndexOf("order by", StringComparison.InvariantCultureIgnoreCase) < 0)
             {
                 var match = ColumnExtract.Match(sql);
                 var columns = match.Groups[1].Value.Trim();
                 sql += " ORDER BY " + columns.Split(',').First().Trim();
             }
 
-            return string.Format("{0} LIMIT {1},{2}", sql, skipParameterName, takeParameterName);
+            yield return string.Format("{0} LIMIT {1},{2}", sql, skip, take);
         }
-
     }
 }
