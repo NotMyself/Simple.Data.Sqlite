@@ -10,7 +10,7 @@ namespace Simple.Data.Sqlite
 {
     public class SqliteSchemaProvider : ISchemaProvider
     {
-        IConnectionProvider _connectionProvider;
+        readonly IConnectionProvider _connectionProvider;
 
         public SqliteSchemaProvider(SqliteConnectionProvider connectionProvider)
         {
@@ -105,6 +105,11 @@ namespace Simple.Data.Sqlite
             if (baseName == null) throw new ArgumentNullException("baseName");
             if (baseName.Length == 0) throw new ArgumentException("Base name must be provided");
             return (baseName.StartsWith("@")) ? baseName : "@" + baseName;
+        }
+
+        public string GetDefaultSchema()
+        {
+            return String.Empty;
         }
 
         private DataTable GetColumnsDataTable(Table table)

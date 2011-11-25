@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using Simple.Data.Sqlite;
 
@@ -14,9 +15,9 @@ namespace Simple.Data.SqliteTests
         {
             const string sql = "select a,b,c from d where a = 1 order by c";
             const string expected =
-                "select a,b,c from d where a = 1 order by c limit @skip,@take";
+                "select a,b,c from d where a = 1 order by c limit 5,10";
 
-            var modified = new SqliteQueryPager().ApplyPaging(sql, "@skip", "@take");
+            var modified = new SqliteQueryPager().ApplyPaging(sql, 5, 10).Single();
             modified = Normalize.Replace(modified, " ").ToLowerInvariant();
 
             Assert.AreEqual(expected, modified);
@@ -27,9 +28,9 @@ namespace Simple.Data.SqliteTests
         {
             const string sql = "select a,b,c from d where a = 1";
             const string expected =
-                "select a,b,c from d where a = 1 order by a limit @skip,@take";
+                "select a,b,c from d where a = 1 order by a limit 5,10";
 
-            var modified = new SqliteQueryPager().ApplyPaging(sql, "@skip", "@take");
+            var modified = new SqliteQueryPager().ApplyPaging(sql, 5, 10).Single();
             modified = Normalize.Replace(modified, " ").ToLowerInvariant();
 
             Assert.AreEqual(expected, modified);
