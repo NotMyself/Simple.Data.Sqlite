@@ -12,7 +12,7 @@
     <tags>sqlite database data ado .net40</tags>
     <language>en-us</language>
     <dependencies>
-      <dependency id="Simple.Data.Ado" version="0.8.2" />
+      <dependency id="Simple.Data.Ado" version="0.12.2" />
       <dependency id="System.Data.SQLite" version="1.0.66.1" />
     </dependencies>
   </metadata>
