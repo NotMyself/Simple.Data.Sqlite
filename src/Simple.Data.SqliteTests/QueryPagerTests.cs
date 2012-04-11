@@ -36,5 +36,30 @@ namespace Simple.Data.SqliteTests
             Assert.AreEqual(expected, modified);
         }
 
+        [Test]
+        public void ShouldApplyLimitWithoutOffsetUsingOrderBy()
+        {
+            const string sql = "select a,b,c from d where a = 1 order by c";
+            const string expected =
+                "select a,b,c from d where a = 1 order by c limit 10";
+
+            var modified = new SqliteQueryPager().ApplyLimit(sql, 10).Single();
+            modified = Normalize.Replace(modified, " ").ToLowerInvariant();
+            Assert.AreEqual(expected,modified);
+        }
+
+        [Test]
+        public void ShouldApplyLimitUsingOrderByFirstColumnIfNotAlreadyOrdered()
+        {
+            const string sql = "select a,b,c from d where a = 1";
+            const string expected =
+                "select a,b,c from d where a = 1 order by a limit 10";
+
+            var modified = new SqliteQueryPager().ApplyLimit(sql, 10).Single();
+            modified = Normalize.Replace(modified, " ").ToLowerInvariant();
+
+            Assert.AreEqual(expected, modified);
+        }
+
     }
 }
