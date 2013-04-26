@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Simple.Data.Mocking</id>
+    <version>0.18.3.1</version>
+    <authors>Mark Rendle</authors>
+    <owners>Mark Rendle</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://github.com/markrendle/Simple.Data</projectUrl>
+    <iconUrl>http://simplefx.org/images/simpledata100x100.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>XML-based Mocking adapter for the Simple.Data data access library.</description>
+    <language>en-us</language>
+    <tags>database data .net40</tags>
+    <dependencies>
+      <dependency id="Simple.Data.Ado" version="0.18.3.1" />
+    </dependencies>
+    <references>
+      <reference file="Simple.Data.Mocking.dll" />
+    </references>
+  </metadata>
+</package>

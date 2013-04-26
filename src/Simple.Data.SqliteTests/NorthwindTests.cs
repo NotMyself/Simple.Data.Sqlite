@@ -99,7 +99,8 @@ namespace Simple.Data.SqliteTests
             Assert.That(order.Poo,Is.Not.Null);
         }
 
-        [Test][Ignore]
+        //[Test][Ignore]
+        [Test]
         public void CanAggregateATable()
         {
             var db = Database.OpenFile(DatabasePath);
