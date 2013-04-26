@@ -18,20 +18,28 @@ namespace Simple.Data.Sqlite
             yield return string.Format("{0} LIMIT {1}", sql, take);
         }
 
-        public IEnumerable<string> ApplyPaging(string sql, int skip, int take)
+        public IEnumerable<string> ApplyPaging(string sql, string[] keys, int skip, int take)
         {
-            sql = AddMissingOrderBy(sql);
+            sql = AddMissingOrderBy(sql, keys);
 
             yield return string.Format("{0} LIMIT {1},{2}", sql, skip, take);
         }
 
-        private string AddMissingOrderBy(string sql)
+        private string AddMissingOrderBy(string sql, string[] keys = null)
         {
             if (sql.IndexOf("order by", StringComparison.InvariantCultureIgnoreCase) < 0)
             {
-                var match = ColumnExtract.Match(sql);
-                var columns = match.Groups[1].Value.Trim();
-                sql += " ORDER BY " + columns.Split(',').First().Trim();
+                if (keys != null && keys.Length > 0)
+                {
+                    sql += " ORDER BY " + string.Join(", ", keys);
+                }
+                else
+                {
+                    var match = ColumnExtract.Match(sql);
+                    var columns = match.Groups[1].Value.Trim().Replace(" AS ", ",").Split(',');
+
+                    sql += " ORDER BY " + columns.First().Trim();
+                }
             }
             return sql;
         }

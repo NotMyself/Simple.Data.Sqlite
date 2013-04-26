@@ -17,7 +17,7 @@ namespace Simple.Data.SqliteTests
             const string expected =
                 "select a,b,c from d where a = 1 order by c limit 5,10";
 
-            var modified = new SqliteQueryPager().ApplyPaging(sql, 5, 10).Single();
+            var modified = new SqliteQueryPager().ApplyPaging(sql, null, 5, 10).Single();
             modified = Normalize.Replace(modified, " ").ToLowerInvariant();
 
             Assert.AreEqual(expected, modified);
@@ -30,7 +30,7 @@ namespace Simple.Data.SqliteTests
             const string expected =
                 "select a,b,c from d where a = 1 order by a limit 5,10";
 
-            var modified = new SqliteQueryPager().ApplyPaging(sql, 5, 10).Single();
+            var modified = new SqliteQueryPager().ApplyPaging(sql, null, 5, 10).Single();
             modified = Normalize.Replace(modified, " ").ToLowerInvariant();
 
             Assert.AreEqual(expected, modified);
@@ -61,5 +61,32 @@ namespace Simple.Data.SqliteTests
             Assert.AreEqual(expected, modified);
         }
 
+        [Test]
+        public void ShouldApplyPagingUsingOrderByKeysIfNotAlreadyOrdered()
+        {
+            const string sql = "select a,b,c from d where a = 1";
+            const string expected =
+                "select a,b,c from d where a = 1 order by c, b limit 5,10";
+            string[] keys = new[] { "c", "b" };
+
+            var modified = new SqliteQueryPager().ApplyPaging(sql, keys, 5, 10).Single();
+            modified = Normalize.Replace(modified, " ").ToLowerInvariant();
+
+            Assert.AreEqual(expected, modified);
+        }
+
+        [Test]
+        public void ShouldApplyPagingUsingOrderByFromQueryClauseAndIgnoringKeys()
+        {
+            const string sql = "select a,b,c from d where a = 1 order by c";
+            const string expected =
+                "select a,b,c from d where a = 1 order by c limit 5,10";
+
+            string[] keys = new[] { "c", "b" };
+            var modified = new SqliteQueryPager().ApplyPaging(sql, keys, 5, 10).Single();
+            modified = Normalize.Replace(modified, " ").ToLowerInvariant();
+
+            Assert.AreEqual(expected, modified);
+        }
     }
 }
