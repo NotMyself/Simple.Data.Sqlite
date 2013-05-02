@@ -86,9 +86,9 @@ namespace Simple.Data.Sqlite
                 var detailName = new ObjectName(null, table.ActualName);
                 var key = new ForeignKey(
                     detailName, 
-                    group.Select(row => row.Field<string>("FKEY_TO_COLUMN")), 
+                    group.Select(row => row.Field<string>("FKEY_FROM_COLUMN")), 
                     masterName,
-                    group.Select(row => row.Field<string>("FKEY_FROM_COLUMN")));
+                    group.Select(row => row.Field<string>("FKEY_TO_COLUMN")));
                 yield return key;
             }
         }
