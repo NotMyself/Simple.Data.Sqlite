@@ -6,6 +6,7 @@ TestResult.xml
 *.resharper.user
 *.resharper
 *.suo
+*.user
 *.cache
 *~
 *.swp
