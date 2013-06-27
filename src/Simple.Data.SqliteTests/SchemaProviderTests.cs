@@ -82,12 +82,36 @@ namespace Simple.Data.SqliteTests
         [Test]
         public void TestForeignKeys()
         {
-            var table = schemaProvider.GetTables().FirstOrDefault(t => t.ActualName == "Products");
+            var table = schemaProvider.GetTables().FirstOrDefault(t => t.ActualName == "ForeignKeyTest");
             Assert.IsNotNull(table);
 
             var foreignKeys = schemaProvider.GetForeignKeys(table);
             Assert.IsNotNull(foreignKeys);
-            Assert.IsTrue(foreignKeys.Count() == 2);
+            Assert.IsTrue(foreignKeys.Count() == 3);
+            foreach (var key in foreignKeys)
+            {
+                StringAssert.AreEqualIgnoringCase("ForeignKeyTest", key.DetailTable.Name);
+                Assert.AreEqual(1, key.Columns.Length);
+                Assert.AreEqual(1, key.UniqueColumns.Length);
+                switch (key.MasterTable.Name)
+                {
+                    case "ForeignKeyTest":
+                        StringAssert.AreEqualIgnoringCase("Id", key.UniqueColumns[0]);
+                        StringAssert.AreEqualIgnoringCase("Parent", key.Columns[0]);
+                        break;
+                    case "Products":
+                        StringAssert.AreEqualIgnoringCase("ProductID", key.UniqueColumns[0]);
+                        StringAssert.AreEqualIgnoringCase("Product", key.Columns[0]);
+                        break;
+                    case "Regions":
+                        StringAssert.AreEqualIgnoringCase("RegionID", key.UniqueColumns[0]);
+                        StringAssert.AreEqualIgnoringCase("RegionID", key.Columns[0]);
+                        break;
+                    default:
+                        Assert.Fail("Unexpected foreign key constraint", key.MasterTable.Name);
+                        break;
+                }
+            }
         }
     }
 }
